@@ -1,0 +1,14 @@
+.order{
+    width:800px;
+    height:160px;
+    border: 1px solid blue;
+    border-radius: 15px;
+    margin:0 auto;
+    margin-top:50px;
+    word-break:break-word;
+    overflow:hidden
+}
+.title{
+    margin-left:50px;
+    margin-top:5px;
+}

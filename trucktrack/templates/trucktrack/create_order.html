@@ -1,0 +1,20 @@
+{% extends "trucktrack/layout.html" %}
+{%load static%}
+
+{%block script%}
+    <link href="{%static 'css/create-order.css' %} " rel="stylesheet">
+{%endblock%}
+{%block body%}
+    <div class="create">
+        <h1 class="title">Create new order</h1>
+    </div>
+    <div class="neworder">
+        <form action="{% url "neworder" %}" method="post">
+            {%csrf_token%}
+            {{form}}
+            <input type= "text" class="form-control" placeholder="From city" name ="send">
+            <input type ="text" class="form-control" placeholder="To city" name ="receive">
+            <input type ="text" class="form-control" placeholder="With type" name ="type">
+            <button class="btn btn-success create_order" type = "submit">Create new order</button>
+        </form>
+{%endblock%}

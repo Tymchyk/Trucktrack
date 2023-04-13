@@ -1,0 +1,22 @@
+{%extends "trucktrack/layout.html" %}
+{%load static%}
+
+{%block script%}
+    <link href="{% static "css/registration.css"%}" rel ="stylesheet">
+{%endblock%}
+
+{%block body%}
+<div class="registration">
+    <h1 class="title">Log in</h1>
+    <form action ="{% url "login" %}" method="post">
+        {%csrf_token%}
+        <input type="text" class="form-control field" placeholder="Write your username" name="username">
+        <input type ="password" class="form-control field_pass" placeholder ="Write your password" name ="password">
+        {%if user_error%}
+            <p class="error">{{user_error}}</p>
+        {%endif%}
+        <button type ="submit" class="btn btn-success login">Log in </button>
+    </form>
+    <p class="change">if you dont have have account <a href="{% url 'register' %}">Sign up</a><p>
+</div>
+{%endblock%}

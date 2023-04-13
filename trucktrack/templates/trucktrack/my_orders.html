@@ -1,0 +1,21 @@
+{% extends "trucktrack/layout.html" %}
+{%load static%}
+
+{%block script %}
+    <link href ="{% static "css/myorder.css" %}" rel ="stylesheet">
+    <link href ="{% static "css/index.css" %}" rel ="stylesheet">
+{%endblock%}
+
+{%block body%}
+    {%for order in orders%}
+            {%if order.visability == False %}
+                <div class="order">
+                    <h6 class="title"><a href="{% url 'order' id=order.id%}">{{order.title}}</a></h6>
+                    <h6 class="title">{{order.sender.city}} - {{order.receiver.city}}</h6>
+                    <h6 class="title">Price: {%widthratio order.bid 1 rates%} {{sign}}</h6>
+                    <h6 class="title"> Made by: <a href="{% url 'profile' id=order.owner.id %}">{{order.owner.username}}</a></h6>
+                    <h6 class ="title"> Posted: {{order.timestamp}}</h6>
+                </div>
+            {%endif%}
+    {%endfor%}
+{%endblock%}

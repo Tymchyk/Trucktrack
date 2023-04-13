@@ -1,0 +1,168 @@
+.main{
+    width:1000px;
+    height:800px;
+    margin:0 auto;
+    border:1px solid silver;
+    border-radius:15px;
+}
+
+.mainblock{
+    width:800px;
+    margin-top: -800px;
+    margin-left: 200px;
+    height:800px;
+    
+    
+}
+.users{
+    width:200px;
+    height:800px;
+    border-right: 1px solid silver;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+}
+.user{
+    width:200px;
+    height:50px;
+}
+.username{
+    margin-left:100px;
+}
+.message{
+    margin-left:150px;
+}
+.chat{
+    height: 700px;
+    width:750px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    word-break: break-word;
+}
+::-webkit-scrollbar{
+    width:2px;
+}
+::-webkit-scrollbar-track{
+    background: white;
+}
+::-webkit-scrollbar-thumb{
+    background: white;
+    border-radius: 15px;
+}
+@media(max-width:1000px){
+    .main{
+        width:800px;
+        margin:0px;
+    }
+    .mainblock{
+        width:600px;
+    }
+    .chat{
+        width:600px;
+    }
+}
+@media(max-width:820px){
+    .main{
+        width:600px;
+        margin:0px;
+    }
+    .mainblock{
+        width:500px;
+        margin-left:100px;
+    }
+    .chat{
+        width:400px;
+    }
+    .user{
+        width:100px;
+    }
+    .users{
+        width:100px;
+    }
+    .username{
+        margin-left:50px;
+    }
+    .message{
+        margin-left:100px;
+    }
+}
+@media(max-width:620px){
+    .main{
+        width:100%;
+        margin:0px;
+    }
+    .mainblock{
+        max-width:80%;
+        margin-left:100px;
+    }
+    .chat{
+        width:80%;
+    }
+    .user{
+        width:100px;
+    }
+    .users{
+        width:100px;
+    }
+    .username{
+        margin-left: 25px;
+    }
+    .message{
+        margin-left:50px;
+    }
+}
+@media(max-width:500px){
+    .mainblock{
+        max-width:70%;
+        margin-left:100px;
+    }
+    .chat{
+        width:70%;
+    }
+}
+@media(max-width:420px){
+    .main{
+        width:100%;
+        margin:0px;
+        height:100%;
+    }
+    .mainblock{
+        margin-left:75px;
+    }
+    .chat{
+        width:70%;
+        height:86%;
+    }
+    .user{
+        width:75px;
+        height: 25;
+    }
+    .users{
+        width:75px;
+        height: 25;
+    }
+    .username{
+        margin-left: 0px;
+    }
+    .message{
+        margin-left:25px;
+    }
+}
+@media(max-width:380px){
+    
+    .chat{
+        width:70%;
+        height:700px;
+    }
+    .main{
+        width:100%;
+        height:600px;
+    }
+    .users{
+        height:600px;
+    }
+    .mainblock{
+        height:600px;
+        margin-left:75px;
+    }
+}

@@ -1,0 +1,70 @@
+{% extends "trucktrack/layout.html" %}
+{% load static %}
+{%block script%}
+    <link href ="{%static "css/order.css" %}" rel="stylesheet">
+{%endblock%}
+
+{%block body%}
+    <div class="order">
+        {% if order%}
+            <p id ="orderid">{{order.id}}</p>
+            <h3 class="title">{{order.title}}</h3>
+            <hr>
+            <h5>{{order.text}}</h5>
+            <hr>
+            <h3 class="title"> Additinonal information</h3>
+            <h5>From: {{order.sender.city}}</h5>
+            <h5>To: {{order.receiver.city}}</h5>
+            <h5>Price: {%widthratio order.bid 1 rates%} {{sign}}</h5>
+            <h5>Tonnage: {{order.tonnage}} t</h5>
+            <h5>Made by: <a href ="{%url "profile" id=order.owner.id%}">{{order.owner}}</a></h5>
+            {% if user.id == order.owner.id%}
+                {% if performers %}
+                    {%if order.visability == True %}
+                    <div class="starting">
+                        <form action="{% url 'order' id=order.id %}" method="post" class="job" data-value="{{order.id}}" onsubmit="return false;">
+                            <select id="performer" class=" startForm form-select">
+                                {%for perform in performers%}
+                                <option value={{perform.performer.id}}>{{perform.performer}}</option>
+                                {%endfor%}
+                            <select>
+                            <button id="start_job" class="btn btn-success start" type ="submit">Start work </button>
+                        </form>
+                    </div>
+                    <div class="changes"></div>
+                    {%else%}
+                    <div class="changes">
+                        <form action="{% url "order" id=order.id %}" method="post" class="job" data-value="{{order.id}}" onsubmit="return false;" >
+                            <button id="change_job" class="btn btn-success change" type ="submit">Change worker </button>
+                            </form>
+                            <form action="{% url "order" id=order.id %}" method="delete" class="job" onsubmit="return false;">
+                                <button id="delete_job" class="btn btn-success delete" type ="submit">Delete work</button>
+                            </form>
+                        </div>
+                        <div class="starting">
+                        </div>
+                    {%endif%}
+                {%else%}
+                    <h5 class="title">Nobody reply this job<h5>
+                {% endif %}
+            {%else%}
+                {%if order.visability == True %}
+                    {%if order.tonnage <= user.truck_tonnage%}
+                        {%if not repliers%}
+                        <form action="{% url 'order' id=order.id %}" method="put" class="reply" data-value="{{order.id}}">
+                            <button  id ="reply" value="{{user.id}}" class="btn btn-success butt_reply"> Reply </button>
+                        </form>
+                        {%else%}
+                            <h5 class="title"> You already reply this job <h5>
+                        {%endif%}
+                    {%else%}
+                        <h5 class="title"> The tonnage of your truck is too small <h5>
+                        <h6 class="title"> (You can change or add tonnage on the homepage)<h6>       
+                    {%endif%}
+                {%endif%}
+            {%endif%}
+        {%endif%}
+        
+    </div>
+    <script src="{% static 'js/order.js' %}"></script>
+{%endblock%}

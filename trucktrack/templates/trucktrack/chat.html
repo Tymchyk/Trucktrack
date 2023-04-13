@@ -1,0 +1,22 @@
+{% extends "trucktrack/layout.html" %}
+{% load static %}
+{%block script%}
+    <script src ="{%static "js/chat.js"%}"></script>
+    <link href="{% static "css/chat.css"%}" rel="stylesheet">
+{%endblock%}
+
+{%block body%}
+<div class="main">
+    <div class="users">
+        {%for chat in chats%}
+            <button class="btn btn-primary user" value = {{chat.number}} >{{chat.chat_id}}</button>
+        {%endfor%}
+    </div>
+    <div class="mainblock">
+        <div class="chat">
+        </div>
+        <div class="send" data-value={{user.username}}>
+        </div>
+    </div>
+</div>
+{%endblock%}

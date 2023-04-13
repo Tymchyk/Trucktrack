@@ -1,0 +1,47 @@
+.neworder{
+    width:1000px;
+    height:700px;
+    margin:0 auto;
+    margin-top:25px;
+}
+.create{
+    margin:0 auto;
+    width:400px;
+    margin-top:50px;
+}
+.create_order{
+    margin-left:400px;
+    margin-top:25px;
+}
+
+@media (max-width:1000px){
+   .neworder{
+        width:600px;
+   }
+   .create_order{
+        margin-left:200px;
+   }
+
+}
+@media (max-width:630px){
+    .neworder{
+         width:400px;
+    }
+    .create_order{
+         margin-left:100px;
+    }
+ 
+ }
+ @media (max-width:430px){
+    .neworder{
+         width:100%;
+         margin-left:0px;
+    }
+    .create_order{
+         margin-left:50px;
+    }
+    .create{
+        width:100%;
+    }
+ 
+ }

@@ -1,0 +1,65 @@
+{%extends "trucktrack/layout.html" %}
+{% load static%}
+
+{%block script%}
+    <link href="{% static "css/profile.css" %}" rel= "stylesheet">
+{%endblock%}
+{%block body%}
+    <div class="page">
+        <div class ="profile">
+            {%if user.id == profile.id%}
+                <button id="settings" value = "{{profile.id}}" class="btn btn-success">Settings</button>
+            {%endif%}
+            <h4 class="name" data-value ="{{user.username}}">{{profile.username}}</h4>
+            <hr>
+            <h4>Email: {{profile.email}}</h4>
+            {%if profile.city != None %}
+                <h4 class="profile_city">City: {{profile.city}}</h4>
+            {%else%}
+                <h4 class="profile_city">City: </h4>
+            {%endif%}
+            {%if profile.phone != None %}
+                <h4 class="profile_phone">Phone: {{profile.phone}}</h4>
+            {%else%}
+                <h4 class="profile_phone">Phone:</h4>
+            {%endif%}
+            {%if profile.truck_tonnage != None %}
+                <h4 class="tonnage">Truck tonnage: {{profile.truck_tonnage}}</h4>
+            {%else%}
+                <h4 class="tonnage">Truck tonnage:</h4>
+            {%endif%}
+        {%if user.id != profile.id%}
+            <button id="chat" value ="{{profile.id}}" class = "btn btn-success profileSend">Send message</button>
+        {%endif%}
+        {%if user.id == profile.id%}
+            <button id="orders" value="{{profile.id}}" class ="btn btn-success profileSend">My orders</button>
+        {%endif%}
+        </div>
+        <div class="settings">
+        </div>
+        <hr>
+        <div class="Orders">
+        </div>
+        {%if user.id != profile.id%}
+            <div class="rating">
+                <form action="{% url 'rating' id=profile.id %}" onsubmit ="return false;" method="post">
+                    <h4 class="title">Choose your grade</h4>
+                    <div class="star-rating">
+                        <input type="radio" class="ratings" value="1">
+                        <input type="radio" class="ratings" value="2">
+                        <input type ="radio" class ="ratings" value="3">
+                        <input type="radio" class="ratings" value="4">
+                        <input type ="radio" class="ratings" value="5">
+                        <p id="stars"></p>
+                    </div>
+
+                    <input type="text" id="comment" name="comment" placeholder="Write your comment" class="form-control">
+                    <button class="btn btn-success comment" value = "{{profile.id}}">Add comment</button>
+                </form>
+            </div>
+        {%endif%}
+        <div class="comments" data-value="{{profile.id}}"></div>
+        <div class="chat" data-value="{{profile.id}}"></div>
+    </div>
+    <script src = "{% static 'js/profile.js'%}"></script>
+{%endblock%}

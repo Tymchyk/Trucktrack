@@ -1,0 +1,61 @@
+{% extends "trucktrack/layout.html" %}
+{%load static%}
+{%block script%}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script type = "module" src="{%static 'js/index.js'%}"></script>
+<link href="{%static 'css/index.css'%}" rel="stylesheet">
+{%endblock%}
+
+{%block body%}
+    <div class="filters">
+        <form action="{%url "index" %}" method="get" name ="Form">
+            <input name="origin" placeholder="origin" id="origin" class="form-control">
+            <input name ="destination" placeholder="destination" id ="destination" class="form-control">
+            <input name ="tonnage" placeholder="tonnage" id="tonnage" class="form-control">
+            <select name="type" id ="type" class="form-select">
+                {% for t in type%}
+                <option value="{{t.type}}">{{t.type}}</option>
+                {%endfor%}
+            </select>
+            <button class="btn btn-success find ms-2 mt-3">Find orders</button>
+            </form>
+            <form action="{%url "index" %}" method="post">
+                {% csrf_token%}
+            <button type ="submit" class="btn btn-success deleteFilter">Delete filters</button>
+            </form>
+    </div>
+    {%if orders%}
+    {%for order in orders%}
+        {%if order.visability == True %}
+            <div class="order">
+                <h6 class="title"><a href="{% url 'order' id=order.id%}">{{order.title}}</a></h6>
+                <h6 class="title">{{order.sender.city}} - {{order.receiver.city}} </h6>
+                <h6 class ="title">Price: {% widthratio order.bid 1 rates%} {{sign}}</h6>
+                <h6 class ="title"> Made by: <a href="{% url 'profile' id=order.owner.id %}">{{order.owner.username}}</a></h6>
+                <h6 class ="title"> Posted: {{order.timestamp}}</h6>
+
+            </div>
+        {%endif%}
+    {%endfor%}
+        <nav>
+            <ul class="pagination mt-3 mx-auto justify-content-center">
+            {%if orders.has_previous%}
+            <li class="page-item"><a class="page-link" href="?page ={{orders.previous_page_number}}">{{orders.previous_page_number}}</a></li>
+            {%endif%}
+            <li class="page-item active" aria-current="page">
+                <span class="page-link">{{orders.number}}</span>
+            </li>
+            {%if orders.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{orders.next_page_number}}">{{orders.next_page_number}}</a></li>
+            {%endif%}
+            </ul>
+        </nav>
+    {%else%}
+        <h3 class="titleOrders"> We do not have orders</h3>
+    {%endif%}
+    <div id ="map"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly&libraries=places"
+      defer
+    ></script>
+{%endblock%}
