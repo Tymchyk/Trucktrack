@@ -1,5 +1,5 @@
 ## Trucktrack project
-### Video demo: <https://youtu.be/KtpYw0JzpBg>
+### Video demo: <https://youtu.be/uYFr6eAU3jQ>
 ___
 
 ## What is the project about and its uniqueness
